@@ -74,3 +74,8 @@ if __name__ == '__main__':
 5) TestRunner
     
     TextTestRunner.run(suit)开始执行测试用例,TextTestResult用来保存测试用例结果
+
+## 链接
+
+- [目录](directory.md)
+- 下一节: [mock](mock.md)
