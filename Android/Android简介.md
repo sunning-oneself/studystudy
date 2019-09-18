@@ -3,7 +3,7 @@
 ## Android系统架构
 
     Android可以分为四层架构：Linux内核层，系统运行库层，应用框架层和应用层
-    ![](img/android系统架构图.png)
+    ![](imgs/android系统架构图.png)
 
 ## Android应用开发特色
 
