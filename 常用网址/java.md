@@ -1,3 +1,3 @@
 # 网址
 
-- [](https://bestzuo.cn)
+- <https://bestzuo.cn>
