@@ -29,7 +29,7 @@ setContentView()方法给当前的活动加载一个布局，而在setContentVie
 
 需要配置主活动，要不然程序不知道先启动哪个，在对应<activity>标签中加入
 
-```
+```xml
 <intent-filter>
 	<action android:name="android.intent.action.MAIN" />
 
@@ -39,7 +39,7 @@ setContentView()方法给当前的活动加载一个布局，而在setContentVie
 
 ## 在活动中使用toast
 
-```
+```java
 @Override
 protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -60,7 +60,8 @@ protected void onCreate(Bundle savedInstanceState) {
 
 在res目录下新建一个menu文件夹，右击res目录->New->Directory,输入文件名menu，接着在这个文件夹下在新建个名叫main的菜单文件，右击menu文件夹->New->Menu resource file
 
-```
+
+```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/add_item"
@@ -71,7 +72,7 @@ protected void onCreate(Bundle savedInstanceState) {
 </menu>
 ```
 
-```
+```java
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu); // 当前活动创建菜单，第一个参数用于指定我们通过哪一个资源文件创建菜单，第二个参数用于指定我们的菜单项将添加到哪一个Menu对象中
         return true;
@@ -93,7 +94,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 ## 销毁活动
 
-   finish()
+   `finish()`
 
 ## 使用Intent在活动之间穿梭
 
@@ -102,7 +103,7 @@ Intent是Android程序中各组件之间进行交互的一种重要方式，它�
 
 Intent有多个构造函数重载，其中一个是Intent(Context packageContext, Class<?>cls).第一个参数context要求提供一个启动活动的上下文，第二个参数Class则是指定想要启动的目标活动，通过这个构造函数可以构建出Intent的意图，Activity类中提供了一个startActivity方法，这个方法是专门用于启动活动的
 
-```
+```java
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +124,8 @@ Intent有多个构造函数重载，其中一个是Intent(Context packageContext
 
 隐式Intent并不明确指出想要启动哪一个活动，而是指定了一系列更为抽象的action和category，然后交由系统分析，找出合适的活动去启动。
 通过在<activity>标签下配置<intent-filter>内容，可以指定活动能够响应的action和category，打开AndroidManifest.xml,添加如下代码
-```
+
+```xml
 <activity android:name=".SecondActivity">
     <intent-filter>
         <action android:name="com.example.activitytest.ACTION_START" />
@@ -132,7 +134,7 @@ Intent有多个构造函数重载，其中一个是Intent(Context packageContext
 </activity>
 ```
 
-```
+```java
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,6 +143,7 @@ Intent有多个构造函数重载，其中一个是Intent(Context packageContext
             }
         });
 ```
+
 com.example.category.DEFAULT是一种默认的category，在调用startActivity方法的时候会自动将category添加到Intent中。使用intent.addCategory()增加category
 
 ## 向下一个活动传递数据
@@ -190,7 +193,7 @@ SecondActivity中给按钮注册点击时间，并在点击事件中添加返回
 构建了Intent，只是用于传递数据，setResult()用于向上一个活动返回数据，第一个参数用于向上一个活动返回处理结果，一般只使用RESULT_OK或RESULT_CANCELED这两个值。
 由于我们是使用startActivityForResult方法启动SecondActivity的，在SecondActivity被销毁之后会回调上一个活动的onActivityResult():
 
-```
+```java
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
