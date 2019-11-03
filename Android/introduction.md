@@ -21,4 +21,4 @@ Android可以分为四层架构：Linux内核层，系统运行库层，应用�
 ## 链接
 
 - [目录](directory.md)
-- 下一部分：[创建简单的Android项目](create-simple-Android-project.md)
+- 下一部分：[日志](log.md)
