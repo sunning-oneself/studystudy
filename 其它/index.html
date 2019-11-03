@@ -1,0 +1,32 @@
+<body>
+<textarea id="content">
+
+</textarea>
+<input type="button" onclick="getV()" value="测试" />
+<table border="1">
+</table>
+</body>
+
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<script type="text/javascript">
+    function getV(){
+        var str= $("#content").val();
+        var re=/[\n\r]/g;
+        lst=str.split(re);
+        var sub_re = /&/g;
+        var re3 = /=/g;
+        for(i = 0; i < lst.length-1; i++) {
+            text = lst[i];
+            sub_lst = text.split(sub_re);
+            alert(sub_lst);
+            for(j = 0; j < sub_lst.length; j++) {
+                text3 = sub_lst[j];
+                lst3 = text3.split(re3);
+                $("table").append("<tr><td>"+lst3[0]+"</td><td>"+lst3[1]+"</td></tr>");
+            }
+            $("table").append("<tr><td></td><td></td></tr>");
+        }
+    }
+</script>
