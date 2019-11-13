@@ -95,3 +95,9 @@ public class BootCompleteReceiver extends BroadcastReceiver {
 
 </manifest>
 ```
+
+## 链接
+
+- [目录](directory.md)
+- 上一部分：[活动](activity.md)
+- 下一部分：[持久化](store.md)

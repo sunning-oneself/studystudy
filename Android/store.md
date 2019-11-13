@@ -93,3 +93,8 @@ public class MainActivity extends AppCompatActivity {
 - Activity类中的getPreferences()方法
 - PreferenceManager类中的getDefaultSharePreferences()方法
 
+
+## 链接
+
+- [目录](directory.md)
+- 上一部分：[广播机制](broadcast.md)

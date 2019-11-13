@@ -4,7 +4,7 @@
 
 右击com.example.activitytest包->New->Activity->Empty Activity弹出活动对话框
 ![](imgs/create_activity.png)
-勾选Generate Layout File表示会自动为MainActivity创建一个对应的布局文件，勾选Launcher Activity标识自动讲MainActivity设置为当前项目著活动
+勾选Generate Layout File表示会自动为MainActivity创建一个对应的布局文件，勾选Launcher Activity标识自动讲MainActivity设置为当前项目主活动
 
 ```java
 package com.example.activitytest;
@@ -54,6 +54,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 }
 ```
+
 第一个参数是Context，也就是Toast要求的上下文，由于活动本身就是一个Context对象，因此这里直接传入FirstActivit.this即可，第二个参数是Toast显示的文本内容，第三个参数是Toast显示的时长
 
 ## 在活动中使用Menu
@@ -316,3 +317,4 @@ Activity中还提供了onSaveInstanceState()回调方法，这个方法可以保
 
 - [目录](directory.md)
 - 上一部分：[日志](log.md)
+- 下一部分：[广播机制](broadcast.md)
