@@ -1,0 +1,35 @@
+Linux£º
+- awk
+- sed
+- grep
+- cut
+- uniq
+- sort
+- xargs
+- head
+- tail
+- ps
+- date
+- ifconfig
+- ls
+- cat
+- kill
+- where
+- who
+- top
+- free
+- history
+- curl
+- pws
+- cd
+- more
+- less
+- wc
+- touch
+- cp
+- mv
+- rm
+- file
+- tar
+- mkdir
+

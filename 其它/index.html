@@ -1,9 +1,10 @@
 <body>
-<textarea id="content">
-
+<textarea id="content" rows="10", cols="50">
 </textarea>
-<input type="button" onclick="getV()" value="测试" />
-<table border="1">
+<input type="button" onclick="getV()" value="确定" />
+<table border="1" cellspacing="0" cellpadding="0">
+    <tbody>
+    </tbody>
 </table>
 </body>
 
@@ -12,21 +13,25 @@
 
 <script type="text/javascript">
     function getV(){
+	$("tbody").html("");
         var str= $("#content").val();
         var re=/[\n\r]/g;
         lst=str.split(re);
         var sub_re = /&/g;
         var re3 = /=/g;
-        for(i = 0; i < lst.length-1; i++) {
+        for(i = 0; i < lst.length; i++) {
             text = lst[i];
             sub_lst = text.split(sub_re);
-            alert(sub_lst);
             for(j = 0; j < sub_lst.length; j++) {
                 text3 = sub_lst[j];
                 lst3 = text3.split(re3);
-                $("table").append("<tr><td>"+lst3[0]+"</td><td>"+lst3[1]+"</td></tr>");
+		if (lst3[0] == "name") {
+		    $("tbody").append("<tr><td><font size='3' color='red'>"+lst3[0]+"</font></td><td><font size='3' color='red'>"+lst3[1]+"</font></td></tr>");
+		} else {
+		    $("tbody").append("<tr><td>"+lst3[0]+"</td><td>"+lst3[1]+"</td></tr>");
+		}
             }
-            $("table").append("<tr><td></td><td></td></tr>");
+            $("tbody").append("<tr height='15px'><td bgcolor='black'></td><td bgcolor='black'></td></tr>");
         }
     }
 </script>
