@@ -91,6 +91,14 @@ Pytest 使用文件 conftest.py 集中管理固件
     - syspath_prepend(path)，添加系统路径；
     - chdir(path)，切换目录。
 
+    7) 使用Fixfure
+
+
+
+5. pytest hook方法
+
+
+
  
 ## 链接
 

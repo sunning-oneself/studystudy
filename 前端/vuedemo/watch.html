@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=="utf-8">
+        <title></title>
+        <script src="vue.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p style="font-size: 25px;">计数器</p>
+            <button v-on:click="counter++">点击</button>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: "#app",
+                data: {
+                    counter:1
+                }
+            });
+            vm.$watch('counter', function(nval, oval){
+                alert('计数器值得变化：'+oval+'变为' +nval);
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=="utf-8">
+        <title></title>
+        <script src="vue.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>
+                <input v-model="parentMsg">
+                <br>
+                <child v-bind:message="parentMsg"></child>
+            </div>
+        </div>
+        <div id="app1">
+            <ol>
+                <todo-item v-for="item in sites" v-bind:todo="item"></todo-item>
+            </ol>
+        </div>
+        <div id="#app2">
+            <div id="counter-event-example">
+                <p>
+                    {{ total }}
+                </p>
+                <button-counter v-on:increment="incrementTotal"></button-counter>
+                <button-counter v-on:increment="incrementTotal"></button-counter>
+            </div>
+        </div>
+        <alert-box id="test">Some</alert-box>
+        <script type="text/javascript">
+        Vue.component('button-counter', {
+            template: '<button v-on:click="incrementHandler">{{ counter }}</button>',
+            data: function(){
+                return {
+                    counter: 0
+                }
+            },
+            methods: {
+                incrementHandler: function(){
+                    this.counter += 1
+                    this.$emit('increment')
+                }
+            }
+        });
+        new Vue({
+            el: "#counter-event-example",
+            data:{
+                total: 0
+            },
+            methods: {
+                incrementTotal: function(){
+                    this.total += 1
+                }
+            }
+        });
+        Vue.component('todo-item', {
+            props: ["todo"],
+            template: "<li>{{todo.text}}</li>"
+        });
+        new Vue({
+            el: "#app1",
+            data: {
+                sites: [
+                {text: "a"},
+                {text: "b"}
+            ]}
+        });
+        Vue.component('alert-box', {
+            template: `
+            <div class="demo-alert-box">
+                <strong>Error!</strong>
+                <slot></slot>
+            </div>
+            `
+        });
+        new Vue({el: "#test"});
+        Vue.component('child', {
+            props:['message'],
+            template: '<span>{{message}}</span>'
+        });
+        new Vue({
+            el:'#app',
+            data:{
+                parentMsg: '父组件内容'
+            }
+        })
+        </script>
+    </body>
+</html>

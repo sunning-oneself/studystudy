@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=="utf-8">
+        <title></title>
+        <script src="vue.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <body>
+        <div id="app">
+            <span v-bind:title="message">haha</span>
+            <span v-if="scan">lalala</span>
+            <span v-for="todo in todos">{{todo}}</span>
+            <p>{{message}}</p>
+            <input v-model="message">
+            <button v-on:click="reverseMessage">反转消息</button>   
+        </div>
+        <div id="test">
+            <blog-post title="My journey with Vue"></blog-post>
+            <blog-post title="Why Vue is so fun"></blog-post>
+        </div>
+        <div id="blog-posts-events-demo">
+            <div :style="{ fontSize: postFontSize + 'em'}">
+                <blog-post-l
+                    v-for="post in posts"
+                    v-bind:key="post.id"
+                    v-bind:post="post"
+                    v-on:enlarge-text="postFontSize += $event"
+                ></blog-post-l>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: "hello world",
+                    scan: true,
+                    todos: ["dkdkd"]
+                },
+                methods: {
+                    reverseMessage: function(){
+                        this.message = this.message.split("").reverse().join("")
+                    }
+                }
+            });
+            Vue.component('blog-post', {
+                props: ['title'],
+                template: '<h3>{{ title }}</h3>'
+            });
+            Vue.component('blog-post-l', {
+                props: ['post'],
+                template: `
+                <div class="blog-post">
+                    <h3>{{ post.title }}</h3>
+                    <button v-on:click="$emit('enlarge-text', 0.1)">
+                        Enlarge text
+                    </button>
+                    <div v-html="post.content"></div>
+                </div>
+                `
+            });
+            new Vue({el:"#test"});
+            new Vue({
+                el: "#blog-posts-events-demo",
+                data: {
+                    posts: [{"title": "lalal", "content": "content"}],
+                    postFontSize: 1
+                }
+            });
+        </script>
+    </body>
+</html>

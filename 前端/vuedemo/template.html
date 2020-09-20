@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=="utf-8">
+        <title></title>
+        <script src="vue.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+    <style>
+        .class1 {
+            background: #444;
+            color: eee;
+        }
+    </style>
+    <body>
+        <div id="app">
+            <div v-html="message"></div>
+        </div>
+        <div id="app1">
+            <label for="r1">修改颜色</label>
+            <input type="checkbox" v-model="use" id="r1">
+            <br></br>
+            <div v-bind:class="{'class1': use}">v-bind指令</div>
+        </div>
+        <div id="app2">
+            <p>{{message}}</p>
+            <input v-model="message">
+        </div>
+        <div id="app3">
+            {{ message | capitalizer }}
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    message: '<h1>菜鸟教程</h1>'
+                }
+            });
+            new Vue({
+                el: "#app1",
+                data: {
+                    use: false
+                }
+            });
+            new Vue({
+                el: "#app2",
+                data: {
+                    message: "hahah"
+                }
+            });
+            new Vue({
+                el: "#app3",
+                data: {
+                    message: "mess"
+                },
+                filters: {
+                    capitalizer: function(value) {
+                        if (!value) return ''
+                        value = value.toString()
+                        return value.charAt(0).toUpperCase()+value.slice(1)
+                    }
+                }
+            })
+        </script>
+    </body> 
+</html>

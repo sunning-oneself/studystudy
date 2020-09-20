@@ -2,39 +2,25 @@
 
 
 ```python
-def max_sum(l):
-    if not l:
-	return
-    m = l[0]
-    s = l[0]
-    for i in l:
-	if i <=0:
-	    s = i
-	else:
-       	    s += i
-	m = max(s, m)
-    return m
+def f(nums):
+	for i in range(1, len(nums)):
+		nums[i] += max(nums[i-1], 0)
+	return max(nums)
+
 ```
 
-2. 求数组最大连续子序列和
+2. 链表中是否有环
 
 
 ```python
-
-def sub_sum(l):
-    if not l:
-        return
-    max_sum = l[0]
-    pre_sum = 0
-    for i in l:
-        if pre_sum < 0:
-            pre_sum = i
-        else:
-            pre_sum += i
-        if pre_sum > max_sum:
-            max_sum = pre_sum
-    return max_sum
-
+def has_cycle(head):
+	slow = fast = head
+	while slow and fast and fast.next:
+		slow = slow.next
+		fast = fast.next.next
+		if slow is fast:
+			return True
+	return False
 ```
 
 
@@ -144,7 +130,7 @@ def hebing(list1,list2):
 
 ```
 
-9. 删除排序链表中的重复元素
+9. 删除有序链表中的重复元素
 
 ```python
 def deleteDuplicates(self, head):
@@ -235,4 +221,44 @@ def binary_chop(alist, data):
         return binary_chop(alist[mid+1:], data)
     else:
         return True
+```
+
+13. 冒泡排序
+
+```
+def bubbleSort(arr):
+    n = len(arr)
+
+    # 遍历所有数组元素
+    for i in range(n):
+
+        # Last i elements are already in place
+        for j in range(0, n-i-1):
+
+            if arr[j] > arr[j+1] :
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+```
+
+14. 求数组中是否存在3个数之和等于N
+
+15. 两个链表是否相交
+
+```python
+def judge_x(pHead1, pHead2):
+    if not pHead1 or not pHead2 or not pHead1.next or not pHead2.next:
+        return None
+    hashset = set()
+    p = pHead1  # 用来遍历链表
+    hashset.add(p)
+    while p.next:
+        p = p.next
+        hashset.add(p)
+        # 这里注意要你把所有的节点都存储到hashset中
+
+    p = pHead2
+    while p:
+        if p.next in hashset:
+            return True
+        p = p.next
+    return False
 ```
