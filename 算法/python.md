@@ -262,3 +262,79 @@ def judge_x(pHead1, pHead2):
         p = p.next
     return False
 ```
+
+16. 最长非重复子串
+
+```python
+def dup(s):
+	u = ''
+	res = 0
+	for i in s:
+		if i not in u:
+			u += i
+			res = max(len(u), res)
+		else:
+			index = u.find(i)
+			u = u[index+1:]+i
+	return res
+```
+
+17. 最长公共子序列
+
+```python
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        m = len(text1)
+        n = len(text2)
+        C = [[0 for i in range(n+1)] for j in range(m+1)]
+        for i in range(1, m+1):
+            for j in range(1, n+1):
+                if text1[i-1] == text2[j-1]:
+                    C[i][j] = C[i-1][j-1] + 1
+                else:
+                    if C[i-1][j] > C[i][j-1]:
+                        C[i][j] = C[i-1][j]
+                    else:
+                        C[i][j] = C[i][j-1]
+        return C[-1][-1]
+
+```
+
+18. 遍历一次删除倒数第k个节点
+
+```python
+    def deln(head, n):
+	if head is None:
+		return False
+	p = head
+	
+	for i in range(n):
+		print('1111')
+		if p.next is not None:
+			print(p.val)
+			p = p.next
+		else:
+			return False
+	q = head
+	while p.next:
+		p = p.next
+		q = q.next
+	print(q.next.val)
+	q.next = q.next.next
+	return True
+```
+
+19. 将一个列表中的元素组合成最大的数(列表中的元素全是整数)
+
+```python
+def max_sort(l):
+	n = len(l)
+	for i in range(n-1):
+		for j in range(n-1-i):
+			if str(l[j]) + str(l[j+1]) < str(l[j+1]) + str(l[j]):
+				l[j], l[j+1] = l[j+1], l[j]
+	s = ''
+	for k in l:
+		s += str(k)
+	return s
+```
