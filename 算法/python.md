@@ -338,3 +338,22 @@ def max_sort(l):
 		s += str(k)
 	return s
 ```
+
+20. 最长公共子串
+
+```python
+def sub(s1,s2):
+	m = len(s1)
+	n = len(s2)
+	f = [[0 for i in range(n+1)] for j in range(m+1)]
+	print(f)
+	max_sub = 0
+
+	for i in range(1,m+1):
+		for j in range(1,n+1):
+			if s1[i-1] == s2[j-1]:
+				f[i][j] = f[i-1][j-1] + 1
+				if max_sub < f[i][j]:
+					max_sub = f[i][j]
+	return max_sub
+```
