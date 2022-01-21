@@ -11,6 +11,8 @@
 
 3. Python是如何进行内存管理
 
+- <https://juejin.cn/post/6856235545220415496>
+
 Python内存池
 python中的内存管理机制
 
