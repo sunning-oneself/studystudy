@@ -339,7 +339,7 @@ def max_sort(l):
 	return s
 ```
 
-20. 最长公共子串
+20. 最长公共子串(长度)
 
 ```python
 def sub(s1,s2):
@@ -356,4 +356,25 @@ def sub(s1,s2):
 				if max_sub < f[i][j]:
 					max_sub = f[i][j]
 	return max_sub
+```
+
+21. 最长公共子串(返回子串)
+
+``` python
+def longSubStr(str1,str2):
+    len1 = len(str1)
+    len2 = len(str2)
+    longest,start1,start2 = 0,0,0
+    c = [[0 for i in range(len2+1)]for i in range(len1+1)]
+    for i in range(1,len1+1):
+        for j in range(1,len2+1):
+            if str1[i-1] == str2[j-1]:
+                c[i][j] = c[i-1][j-1]+1
+
+            if (longest < c[i][j]):
+                 longest = c[i][j]
+                start1 = i-longest
+                start2 = j-longest
+
+    return str1[start1:start1+longest],start1,start2
 ```
