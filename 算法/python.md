@@ -241,6 +241,26 @@ def bubbleSort(arr):
 
 14. 求数组中是否存在3个数之和等于N
 
+```python
+def sum_3(nums, target):
+     len1 = len(nums)
+     res = []
+     if len1 < 3:
+         return res
+     nums.sort()
+     for first in range(len1):
+         third = len1 - 1
+         other_target = target - nums[first]
+         for second in range(first+1,len1):
+             while second < third and nums[second] + nums[third] > other_target:
+                 third -= 1
+             if second == third:
+                 break
+             if nums[second] + nums[third] == other_target:
+                 res.append((nums[first], nums[second], nums[third]))
+     return res
+```
+
 15. 两个链表是否相交
 
 ```python
