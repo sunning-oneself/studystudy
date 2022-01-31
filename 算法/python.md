@@ -378,3 +378,53 @@ def longSubStr(str1,str2):
 
     return str1[start1:start1+longest],start1,start2
 ```
+
+
+
+22. 两数之和
+
+``` python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashtable = dict()
+        for i, num in enumerate(nums):
+            if target - num in hashtable:
+                return [hashtable[target - num], i]
+            hashtable[nums[i]] = i
+        return []
+```
+
+24. 三数之和等于0，且三个数不重复
+
+``` python
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        nums.sort()
+        ans = list()
+        
+        # 枚举 a
+        for first in range(n):
+            # 需要和上一次枚举的数不相同
+            if first > 0 and nums[first] == nums[first - 1]:
+                continue
+            # c 对应的指针初始指向数组的最右端
+            third = n - 1
+            target = -nums[first]
+            # 枚举 b
+            for second in range(first + 1, n):
+                # 需要和上一次枚举的数不相同
+                if second > first + 1 and nums[second] == nums[second - 1]:
+                    continue
+                # 需要保证 b 的指针在 c 的指针的左侧
+                while second < third and nums[second] + nums[third] > target:
+                    third -= 1
+                # 如果指针重合，随着 b 后续的增加
+                # 就不会有满足 a+b+c=0 并且 b<c 的 c 了，可以退出循环
+                if second == third:
+                    break
+                if nums[second] + nums[third] == target:
+                    ans.append([nums[first], nums[second], nums[third]])
+        
+        return ans
+```
