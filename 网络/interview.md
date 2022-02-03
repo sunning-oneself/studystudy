@@ -250,31 +250,11 @@ yield 是python当中的语法。当协程执行到yield关键字时，会暂停
 
 20. 线程之间通信
 
-1.threading.Lock()
- 如果多个线程对某一资源同时进行修改，可能会存在不可预知的情况。为了修改数据的正确性，需要把这个资源锁住，只允许线程依次排队进去获取这个资源。当线程A操作完后，释放锁，线程B才能进入。如下脚本是开启多个线程修改变量的值，但输出结果每次都不一样。
+互斥量 Synchronized/Lock：采用互斥对象机制，只有拥有互斥对象的线程才有访问公共资源的权限。因为互斥对象只有一个，所以可以保证公共资源不会被多个线程同时访问
 
-2.threading.Rlock()
- 用法和 threading Lock() 一致，区别是 threading.Rlock() 允许多次锁资源，acquire() 和 release() 必须成对出现，也就是说加了几把锁就得释放几把锁。
+信号量 Semphare：它允许同一时刻多个线程访问同一资源，但是需要控制同一时刻访问此资源的最大线程数量
 
-3.threading.Condition()
-threading.Condition() 可以理解为更加高级的锁，比 Lock 和 Rlock 的用法更高级，能处理一些复杂的线程同步问题。threading.Condition() 创建一把资源锁（默认是Rlock），提供 acquire() 和 release() 方法，用法和 Rlock 一致。此外 Condition 还提供 wait()、Notify() 和 NotifyAll() 方法。
-
-wait()：线程挂起，直到收到一个 Notify() 通知或者超时（可选参数），wait() 必须在线程得到 Rlock 后才能使用。
-
-Notify() ：在线程挂起的时候，发送一个通知，让 wait() 等待线程继续运行，Notify() 也必须在线程得到 Rlock 后才能使用。 Notify(n=1)，最多唤醒 n 个线程。
-
-NotifyAll() ：在线程挂起的时候，发送通知，让所有 wait() 阻塞的线程都继续运行。
-
-4.threading.Event()
- threading.Event() 原理是在线程中立了一个 Flag ，默认值是 False ，当一个或多个线程遇到 event.wait() 方法时阻塞，直到 Flag 值 变为 True 。threading.Event() 通常用来实现线程之间的通信，使一个线程等待其他线程的通知 ，把 Event 传递到线程对象中。
-
-event.wait() ：阻塞线程，直到 Flag 值变为 True
-
-event.set() ：设置 Flag 值为 True
-
-event.clear() ：修改 Flag 值为 False
-
-event.isSet() :  仅当 Flag 值为 True 时返回
+事件(信号)，Wait/Notify：通过通知操作的方式来保持多线程同步，还可以方便的实现多线程优先级的比较操作
 
 21. 进程间的通信方式
 
@@ -291,6 +271,12 @@ event.isSet() :  仅当 Flag 值为 True 时返回
 套接字Socket：套解口也是一种进程间通信机制，与其他通信机制不同的是，它可用于不同机器间的进程通信。
 
 信号 ( sinal ) ： 信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生。
+
+几种方式的比较：
+管道：速度慢、容量有限
+消息队列：容量收到系统限制，且要注意第一次读的时候，要考虑上一次没有读完数据的问题。
+信号量：不能传递复杂信息，只能用来同步。
+共享内存：能够很容易控制容量，速度快，但要保持同步，比如一个进程在写的时候，另一个进程要注意读写的问题，相当于线程中的线程安全。
 
 22. tcp传输的可靠性
 
