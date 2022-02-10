@@ -211,6 +211,12 @@ Limit 的使用，会大大提升无效数据的检索（被跳过），因为�
 隔离性
 持久性
 
+https://blog.csdn.net/j1231230/article/details/104719632
+
+https://blog.csdn.net/ps08160000/article/details/90142274
+
+https://www.cnblogs.com/superchong/p/10847966.html
+
 10. Redis雪崩、穿透和击穿
 
 - <https://juejin.cn/post/6844903886113751053>
