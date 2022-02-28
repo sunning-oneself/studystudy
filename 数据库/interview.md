@@ -253,3 +253,5 @@ redis数据的缓存时间
 超量淘汰机制
 
 缓存雪崩，穿透，击穿
+
+- https://blog.csdn.net/xueningyang555/article/details/120862998
